@@ -1,9 +1,9 @@
-import { ReactDOM } from "react-dom";
+
 import React, { useState, useEffect } from "react";
 
 
-const Routines = () => {
-    
+const Routines = (props) => {
+    const []
 }
 
-export default Routines;
+//export default Routines;
