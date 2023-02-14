@@ -5,6 +5,7 @@ const path = require('path');
 
 app.use('/dist', express.static('dist'));
 app.use('/assets', express.static('assets'));
+app.use("/components",express.static("components"))//snjeza
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, 'index.html')));
 
 const port = process.env.PORT || 3000;
