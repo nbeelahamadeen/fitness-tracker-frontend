@@ -30,22 +30,22 @@ const Register = () => {
       })
       .catch(err => console.log(err));
 }
-// return (
-//   <div>
-//   <form onSubmit={register}>
-//         <input
-//           placeholder='username'
-//           value={registerUsername}
-//           onChange={ev => setRegisterUsername(ev.target.value)} />
-//         <input
-//           placeholder='password'
-//           value={registerPassword}
-//           onChange={ev => setRegisterPassword(ev.target.value)} />
+return (
+  <div>
+  <form onSubmit={register}>
+        <input
+          placeholder='username'
+          value={registerUsername}
+          onChange={ev => setRegisterUsername(ev.target.value)} />
+        <input
+          placeholder='password'
+          value={registerPassword}
+          onChange={ev => setRegisterPassword(ev.target.value)} />
 
-//         <button>Register</button>
-//       </form>
-//    </div>
-// )
+        <button>Register</button>
+      </form>
+   </div>
+)
 }
 
 export default Register;
