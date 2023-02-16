@@ -1,74 +1,97 @@
-
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = (props) => {
-  const [loginUsername, setLoginUsername] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
-  
-
-  const {
-    /*
-    loginUsername,
-    setLoginUsername,
-    loginPassword,
-    setLoginPassword,
-    */
-    setToken
-  } = props;
-
+  const exchangeTokenForUser = props.exchangeTokenForUser;
+  const token = props.token;
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const {user, setUser ,isLoggedIn , setIsLoggedIn } = props;
+  const navigate = useNavigate(); 
 
 
   const login = (ev) => {
-    // login by username and password
-    // uf succesfull we git TOKEN as a result
-    // than we save token in localstrage
     ev.preventDefault();
     console.log('login');
-    fetch('http://fitnesstrac-kr.herokuapp.com/api/users/login', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user: {
-          username: loginUsername,
-          password: loginPassword
-        }
-      })
-    })
-      .then(response => response.json())
-      .then(result => {
+    fetch(
+      'http://fitnesstrac-kr.herokuapp.com/api/users/login',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+
+        },
+        body: JSON.stringify({
+          
+            username: username,
+            password: password,
+            }),
+         }
+        )
+      .then((response) => response.json())
+      .then((result) => {
         if (!result.success) {
-          throw result.error.message;
+          throw result;
         }
         const token = result.data.token;
-        // we save token in localstorage
-        window.localStorage.setItem('token', token);//we want to call it a token and it will access token
-        // also we save token in state of App component
-        setToken(token);
-        // exchangeTokenForUser()
+        window.localStorage.setItem('token', token);
+        exchangeTokenForUser();
+        getPosts();
+        console.log(user)
+        setIsLoggedIn(true);
+        
+        
       })
-      .catch(err => console.log(err));
-  }
+      .catch((err) => console.log(err));
+
+  };
+
+
+  const logout = ()=> {
+    window.localStorage.removeItem('token');
+    setUser({});
+    window.location.reload(false);
+  } 
+
+
+  
 
   return (
     <div>
-      <form onSubmit={login}>
-        <input
-          placeholder='username'
-          value={loginUsername}
-          onChange={ev => setLoginUsername(ev.target.value)} />
-        <input
-          placeholder='password'
-          type='password'
-          value={loginPassword}
-          onChange={ev => setLoginPassword(ev.target.value)} />
+    {
+        isLoggedIn ? 
+        <div>
+        <h1>Welcome Stranger {user.username}!</h1> <br/>
+        <button onClick={ ev => navigate('./postForm')}>Make a post</button>
+        <button onClick={ logout }> Logout </button>
+        <section><ViewMessages  token={token} user ={user} /></section>
 
-        <button>Login</button>
-      </form>
-    </div>
+        </div> 
+        : null
+      }
+      {
+        !isLoggedIn ? (
+            <div className='preLogin'>
+                <h2 className='signin'>Please sign in</h2>
+                <form className='displayLoginForm' onSubmit={login}>
+                <input
+                placeholder="username"
+                value={username}
+                onChange={(ev) => setUsername(ev.target.value)}
+                />
+                <input
+                placeholder="password"
+                value={password}
+                type="password"
+                onChange={(ev) => setPassword(ev.target.value)}
+                />
+                <button disabled={!username || !password}>Login</button>
+                </form>
+            </div>) : null
+        }
+        </div>  
   );
-};
+}
 
 export default Login;
