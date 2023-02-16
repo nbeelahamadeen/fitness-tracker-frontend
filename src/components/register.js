@@ -17,16 +17,14 @@ const Register = (props) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            user: {
               username: registerUsername,
               password: registerPassword 
-            }
           })
         })
         .then(response => response.json())
         .then(result => {
           if(!result.success){
-            throw result.error;
+            throw result;
           }
           console.log(result);
           navigate('/login');

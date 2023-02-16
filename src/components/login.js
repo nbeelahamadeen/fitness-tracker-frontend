@@ -23,17 +23,16 @@ const Login = (props) => {
 
         },
         body: JSON.stringify({
-          user: {
+          
             username: username,
             password: password,
-            },
-          }),
+            }),
          }
         )
       .then((response) => response.json())
       .then((result) => {
         if (!result.success) {
-          throw result.error;
+          throw result;
         }
         const token = result.data.token;
         window.localStorage.setItem('token', token);
