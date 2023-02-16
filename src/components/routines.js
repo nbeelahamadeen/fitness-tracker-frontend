@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Activities from "./activities";
 
 const Routines = () => {
   const [routines, setRoutines] = useState([]);
@@ -10,8 +11,7 @@ const Routines = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        setRoutines(result)
-        console.log(result);
+        setRoutines(result);
       })
       .catch(console.error);
   });
@@ -23,11 +23,16 @@ const Routines = () => {
         {routines.map((routine) => {
           {
             return (
-              <li key={routine.id}>
-                {routine.name} ({routine.activities.length})
-              </li>
+              <div key={routine.id}>
+                <h3>Routine:{routine.name} ({routine.activities.length})</h3>
+                <li>Goal:{routine.goal}</li>
+                <li>Track Creator:{routine.creatorName}</li>
+                {/* Should get activities for each routine */}
+              </div>
+              
             );
           }
+          
         })}
       </ul>
     </div>

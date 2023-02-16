@@ -6,6 +6,7 @@ import Register from "./components/register";
 import Home from "./components/home";
 import Routines from "./components/routines";
 import Activities from "./components/activities";
+import MyRoutines from "./components/myroutines";
 
 const App = () => {
   const [user, setUser] = useState([]);
@@ -38,7 +39,7 @@ const App = () => {
       fetch("http://fitnesstrac-kr.herokuapp.com/api/users/me", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
       })
         .then((response) => response.json())
@@ -69,7 +70,7 @@ const App = () => {
       <Link to='/routines'>Routines</Link>
         <Link to='/login'>{ token ? "My Routine" : "Login"}</Link>
         {token ? null : <Link to='/register'>Register</Link> }
-
+        <Link to="/myroutines">My Routines</Link>
         <Link to="/activities">Activities</Link>
       </nav>
       <Routes>
@@ -77,7 +78,7 @@ const App = () => {
             {/* <Route exact path='/' element={<Navigate to='/routines'/>}/> */}
             <Route path="/routines" element={<div><Routines/></div>}/>
             <Route path="/activities" element={<div><Activities/></div>}/>
-            <Route path='/myroutines' element={<div ></div>}/>
+            <Route path='/myroutines' element={<div ><MyRoutines/></div>}/>
             <Route path='/login' element={<div><Login setToken={setToken} user = { user } setUser ={ setUser} setIsLoggedIn = {setIsLoggedIn} isLoggedIn={isLoggedIn} ></Login></div>} />
             <Route path='/register' element={<div><Register exchangeTokenForUser = {exchangeTokenForUser}/></div>} />
       </Routes>
