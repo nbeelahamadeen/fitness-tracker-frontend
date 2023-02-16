@@ -1,34 +1,41 @@
+// import ReactDOM from "react-dom/client";
 
-import React, { useState, useEffect } from "react";
-import Register from "./registration";
-import {routinesO } from "./routines";
-import { token, exchangeTokenForUser } from "./../../src/index"
-import { HashRouter, Routes, Route, Link, Navigate} from 'react-router-dom';
+// import { HashRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+// import React, { useState, useEffect } from "react";
+// import Register from "./registration";
+// import {routines } from "./routines";
+// import { token, exchangeTokenForUser } from "./../../src/index"
+// import { HashRouter, Routes, Route, Link, Navigate} from 'react-router-dom';
 
 
 
 
-const Home = () => {
-    
+// const Home = () => {
+//   const [routines, setRoutines] = useState([]);
+//   const [activities, setActivities]= useState([])
 //     return (
 //         <div>
 //           <h1 className='title'>Fitness Tracker</h1>
 //           <nav className='links'>
-//             {/* <Link to='/routines'>Routines ({routinesO.length})</Link> */}
-//             {/* <Link to='/login'>{ token ? "Messages" : "Login"}</Link>
-//             {token ? null : <Link to='/register'>Register</Link> } */}
-//             {/* <Link to='activities'>Activities({activities.length})</Link> */}
+//             <Link to='/routines'>Routines ({routines.length})</Link> */
+//             <Link to='/login'>{ token ? "Messages" : "Login"}</Link>
+//             {token ? null : <Link to='/register'>Register</Link> }
+//             <Link to='activities'>Activities({activities.length})</Link>
 
 //           </nav>
             
 //           <Routes>
-//             <Route exact path='/' element={<Navigate to='/routines'/>}/>
-//             <Route path='/myroutines' element={<div ></div>} />
+//             <Route path='*' element={<div><Home/></div>} />
 //             <Route path='/login' element={<div></div>} />
 //             <Route path='/register' element={<div><Register exchangeTokenForUser = {exchangeTokenForUser}/></div>} />
 //           </Routes>
 //         </div>
 //       );
-}
-
+// }
+// const root = ReactDOM.createRoot(document.querySelector("#root"));
+// root.render(
+//   <HashRouter>
+//     <App />
+//   </HashRouter>
+// );
 // export default Home;

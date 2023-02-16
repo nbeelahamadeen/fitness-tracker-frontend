@@ -5,26 +5,28 @@ import Login from "./components/login";
 import Register from "./components/registration";
 import Home from "./components/home";
 import Routines from "./components/routines";
+import Activities from "./components/activities";
 
 const App = () => {
   const [user, setUser] = useState([]);
   const [routines, setRoutines] = useState([]);
+  const [activities, setActivities]= useState([])
 
   const [token, setToken] = useState(null);
 
-  const getRoutines = async() => {
-  await fetch("http://fitnesstrac-kr.herokuapp.com/api/routines", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then(routines => {
-        setRoutines(routines);
-        console.log(routines);
-      })
-      .catch(console.error);
-  };
+  // const getRoutines = async() => {
+  // await fetch("http://fitnesstrac-kr.herokuapp.com/api/routines", {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then(routines => {
+  //       setRoutines(routines);
+  //       console.log(routines);
+  //     })
+  //     .catch(console.error);
+  // };
 
 
 
@@ -50,7 +52,8 @@ const App = () => {
 
   useEffect(() => {
     exchangeTokenForUser();
-    getRoutines();
+    // getRoutines();
+    // getActivities()
   }, [token]);
 
   const logout = () => {
@@ -61,15 +64,19 @@ const App = () => {
     <div>
       <h1 className='title'>Fitness Tracker</h1>
       <nav className='links'>
-      <Link to='/routines'>Routines({routines.length})</Link>
+      <Link to='/'>Home</Link>
+      <Link to='/routines'>Routines</Link>
         {/* <Link to='/login'>{ token ? "My Routine" : "Login"}</Link>
         {token ? null : <Link to='/register'>Register</Link> } */}
 
-        <Link>Activities</Link>
+        <Link to="/activities">Activities</Link>
       </nav>
       <Routes>
-            <Route exact path='/' element={<Navigate to='/routines'/>}/>
-            <Route path='/myroutines' element={<div ></div>} />
+            <Route path="/" element={<div>Home</div>}/>
+            {/* <Route exact path='/' element={<Navigate to='/routines'/>}/> */}
+            <Route path="/routines" element={<div><Routines/></div>}/>
+            <Route path="/activities" element={<div><Activities/></div>}/>
+            <Route path='/myroutines' element={<div ></div>}/>
             <Route path='/login' element={<div></div>} />
             <Route path='/register' element={<div><Register exchangeTokenForUser = {exchangeTokenForUser}/></div>} />
       </Routes>
