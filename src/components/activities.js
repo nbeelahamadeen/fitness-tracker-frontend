@@ -3,7 +3,40 @@ import React, { useState, useEffect } from "react";
 
 
 const Activities = () => {
-    
+  const [ activities, setActivities] = useState([]);
+  //const getAllActivities ()=>{}
+    fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(response => response.json())
+      .then(result => {
+        setActivities(result)
+        console.log(result);
+      })
+      .catch(console.error);
+  
+  useEffect(()=>{
+   
+  });
+
+  return (
+    <div>
+      <h2>Activities ({activities.length})</h2>
+      <ul>
+        {activities.map((activity) => {
+          {
+            return (
+              <li key={activity.id}>
+                <h3>{activity.name}</h3>
+                <p>Description: {activity.description}</p>
+              </li>
+            );
+          }
+        })}
+      </ul>
+    </div>
+  );
 }
 
-//export default Activities;
+export default Activities;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Routines = ({ routinesO }) => {
+const Routines = () => {
   const [routines, setRoutines] = useState([]);
   useEffect(() => {
     fetch("http://fitnesstrac-kr.herokuapp.com/api/routines", {
@@ -10,6 +10,7 @@ const Routines = ({ routinesO }) => {
     })
       .then((response) => response.json())
       .then((result) => {
+        setRoutines(result)
         console.log(result);
       })
       .catch(console.error);
@@ -17,7 +18,7 @@ const Routines = ({ routinesO }) => {
 
   return (
     <div>
-      <h2>Routines ({routinesO.length})</h2>
+      <h2>Routines ({routines.length})</h2>
       <ul>
         {routines.map((routine) => {
           {
