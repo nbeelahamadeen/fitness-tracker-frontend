@@ -33,7 +33,7 @@ const RoutineForm = (props) => {
   return (
     <div>
       <h2>Set A New Routine</h2>
-      <form onSubmit={(ev) => submitRoutine(ev)}>
+      <form className="routineForm" onSubmit={(ev) => submitRoutine(ev)}>
         <h3>
           Name:{" "}
           <input
