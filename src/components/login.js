@@ -65,7 +65,7 @@ const Login = (props) => {
         <div>
   
         <h1>Welcome FitnessTracker {user.username}!</h1> <br/>
-        <MyRoutines  user ={ user }token={token}/>
+        <MyRoutines  user ={ user } token={token}/>
         <button onClick={(ev) => logout(ev)}> Logout </button>
         
 

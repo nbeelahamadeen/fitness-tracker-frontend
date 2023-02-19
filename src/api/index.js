@@ -39,6 +39,26 @@ const createRoutines = async ({ name, goal, isPublic, token }) => {
     .catch(console.error);
 };
 
+const editRoutine = async(routineId, name, goal, token)=>{
+await fetch(`${MAIN_URL}/api/routines/${routineId}`, {
+  method: "PATCH",
+  headers: {
+    "Content-Type": "Application/json",
+    "Authorization": `Bearer ${token}`,
+  },
+  body: JSON.stringify({
+    name,
+    goal,
+  })
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+    return result;
+  })
+  .catch(console.error);
+}
+
+// Activity fetch calls 
 const createActivity = async ({name, description, token})=>{
   await fetch(`${MAIN_URL}/api/activities`, {
     method: 'POST',
@@ -66,4 +86,5 @@ module.exports = {
   getAllRoutines,
   createRoutines,
   createActivity,
+  editRoutine,
 };

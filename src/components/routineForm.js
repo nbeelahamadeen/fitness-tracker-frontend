@@ -26,8 +26,8 @@ const RoutineForm = (props) => {
   const submitRoutine = (ev) => {
     ev.preventDefault();
     createRoutines({ token, name, goal, isPublic });
-    getUsersPublicRoutines({username,token});
-    // getAllRoutines();
+    getUsersPublicRoutines({ username, token});
+    
   };
 
   return (

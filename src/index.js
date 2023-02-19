@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import React, { useState, useEffect } from "react";
 import { HashRouter, Routes, Route, Link, Navigate } from "react-router-dom";
-import { getAllRoutines, createRoutines, createActivity } from "./api";
+import { getAllRoutines, createRoutines, createActivity, editRoutine } from "./api";
 import Login from "./components/login";
 import Register from "./components/register";
 import Home from "./components/home";
@@ -10,6 +10,8 @@ import Activities from "./components/activities";
 import MyRoutines from "./components/myroutines";
 import RoutineForm from "./components/routineForm";
 import ActivitiesForm from "./components/activitesForm";
+import EditRoutineForm from "./components/editRoutineForm";
+
 
 const App = () => {
   const [user, setUser] = useState([]);
@@ -92,7 +94,7 @@ const App = () => {
           path="/myroutines"
           element={
             <div>
-              <MyRoutines user={user} routines={routines} />
+              <MyRoutines token= {token} user={user} routines={routines} />
             </div>
           }
         />
@@ -133,6 +135,19 @@ const App = () => {
           }
         />
         <Route path="/activities/activitiesForm" element={<div><ActivitiesForm  createActivity ={createActivity} token={token}/></div> }/>
+      
+        <Route
+          path="/myroutines/editRoutineForm"
+          element={
+            <div>
+              <EditRoutineForm
+                editRoutine= {editRoutine}
+                token= {token}
+                
+              />
+            </div>
+          }
+        />
       </Routes>
       
     </div>

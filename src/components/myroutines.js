@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import EditRoutineForm from "./editRoutineForm";
 import RoutineForm from "./routineForm";
 
 const MyRoutines = (props) => {
-  const { user, token } = props;
+  const { routineId, user, token } = props;
   const { username } = user;
   const [userRoutines, setUserRoutines] = useState([]);
 
@@ -31,6 +32,7 @@ const MyRoutines = (props) => {
       <h2>My Routines</h2>
       <ul>
         <RoutineForm token={token} />
+        <EditRoutineForm token={token} routineId={routineId}/>
         {userRoutines.length ? (
           userRoutines.map((routine) => (
             <div key={routine.id}>
