@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import RoutineForm from './routineForm';
+import MyRoutines from './myroutines';
+
 
 
 const Login = (props) => {
-  const exchangeTokenForUser = props.exchangeTokenForUser;
-  const token = props.token;
+  const {user, setUser ,isLoggedIn , setIsLoggedIn, exchangeTokenForUser, token } = props;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const {user, setUser ,isLoggedIn , setIsLoggedIn } = props;
+  
   const navigate = useNavigate(); 
 
 
@@ -31,15 +33,14 @@ const Login = (props) => {
         )
       .then((response) => response.json())
       .then((result) => {
-        if (!result.success) {
+        if (!result.token) {
           throw result;
         }
-        const token = result.data.token;
+        const token = result.token;
         window.localStorage.setItem('token', token);
-        exchangeTokenForUser();
-        getPosts();
-        console.log(user)
         setIsLoggedIn(true);
+        exchangeTokenForUser();
+        
         
         
       })
@@ -62,10 +63,11 @@ const Login = (props) => {
     {
         isLoggedIn ? 
         <div>
-        <h1>Welcome Stranger {user.username}!</h1> <br/>
-        <button onClick={ ev => navigate('./postForm')}>Make a post</button>
-        <button onClick={ logout }> Logout </button>
-        <section><ViewMessages  token={token} user ={user} /></section>
+  
+        <h1>Welcome FitnessTracker {user.username}!</h1> <br/>
+        <MyRoutines  user ={ user }token={token}/>
+        <button onClick={(ev) => logout(ev)}> Logout </button>
+        
 
         </div> 
         : null

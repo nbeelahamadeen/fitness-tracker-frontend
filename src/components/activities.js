@@ -11,8 +11,7 @@ const Activities = () => {
       },
     }).then(response => response.json())
       .then(result => {
-        setActivities(result)
-        console.log(result);
+        setActivities(result);
       })
       .catch(console.error);
   
