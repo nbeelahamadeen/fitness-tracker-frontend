@@ -4,13 +4,9 @@ import ActivitiesForm from "./activitesForm";
 import { createActivity } from "../api";
 
 const Activities = (props) => {
-  const { token, name, description} = props;
+  const {token} = props
   const [ activities, setActivities] = useState([]);
-  const [activity, setActivity] = useState([])
-
-  
-
-  
+ 
   const getAllActivities = ()=>{
     fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
       headers: {

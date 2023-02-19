@@ -70,7 +70,7 @@ const App = () => {
         {token ? null : <Link to="/register">Register</Link>}
       </nav>
       <Routes>
-        <Route path="/home" element={<div><Home/>Home</div>} />
+        <Route path="/" element={<div><Home/></div>} />
         
         <Route
           path="/routines"
@@ -84,7 +84,7 @@ const App = () => {
           path="/activities"
           element={
             <div>
-              <Activities />
+              <Activities token={token} />
             </div>
           }
         />
