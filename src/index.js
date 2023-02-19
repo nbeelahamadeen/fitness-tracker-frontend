@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import React, { useState, useEffect } from "react";
 import { HashRouter, Routes, Route, Link, Navigate } from "react-router-dom";
-import { getAllRoutines, createRoutines } from "./api";
+import { getAllRoutines, createRoutines, createActivity } from "./api";
 import Login from "./components/login";
 import Register from "./components/register";
 import Home from "./components/home";
@@ -9,6 +9,7 @@ import Routines from "./components/routines";
 import Activities from "./components/activities";
 import MyRoutines from "./components/myroutines";
 import RoutineForm from "./components/routineForm";
+import ActivitiesForm from "./components/activitesForm";
 
 const App = () => {
   const [user, setUser] = useState([]);
@@ -69,8 +70,8 @@ const App = () => {
         {token ? null : <Link to="/register">Register</Link>}
       </nav>
       <Routes>
-        <Route path="/" element={<div>Home</div>} />
-        {/* <Route exact path='/' element={<Navigate to='/routines'/>}/> */}
+        <Route path="/home" element={<div><Home/>Home</div>} />
+        
         <Route
           path="/routines"
           element={
@@ -131,7 +132,9 @@ const App = () => {
             </div>
           }
         />
+        <Route path="/activities/activitiesForm" element={<div><ActivitiesForm  createActivity ={createActivity} token={token}/></div> }/>
       </Routes>
+      
     </div>
   );
 };
