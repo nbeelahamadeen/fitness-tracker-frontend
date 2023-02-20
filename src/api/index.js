@@ -82,9 +82,35 @@ const createActivity = async ({name, description, token})=>{
     })
     .catch(console.error);
 }
+
+const editActivity = async ({name, description, token}) => {
+  await fetch(`${MAIN_URL}/api/activities`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`, //we needed to pass a token in order for it to work
+    },
+    body: JSON.stringify({ 
+        name,
+        description
+    })
+}
+  )
+  .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+      return result;
+      // after successful create
+      // refresh posts
+      
+    })
+    .catch(console.error);
+}
+
 module.exports = {
   getAllRoutines,
   createRoutines,
   createActivity,
   editRoutine,
+  editActivity,
 };
