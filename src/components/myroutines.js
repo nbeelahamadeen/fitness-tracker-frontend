@@ -28,25 +28,6 @@ const MyRoutines = (props) => {
     getUsersPublicRoutines({ username, token });
   }, []);
 
-
-  // const deleteRoutines = async (routineId) => {
-  //   await  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Bearer ${token}`
-  //     }
-  //   }).then(response => response.json())//add fetch
-  //     .then((result) => {
-
-  //       console.log(result)
-      
-  //       // after successful delete
-  //       // refresh posts
-  //     getUsersPublicRoutines();
-  //     })
-  //     .catch(console.error);
-  // }
   return (
     <div>
       <h2>My Routines</h2>
