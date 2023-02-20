@@ -27,7 +27,7 @@ const Activities = (props) => {
   return (
     <div>
       <h2>Activities ({activities.length})</h2>
-      <ActivitiesForm token={token}/>
+    <ActivitiesForm token={token}/>
       <ul>
         {activities.map((activity) => {
           {

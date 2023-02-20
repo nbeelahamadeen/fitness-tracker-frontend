@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import EditRoutineForm from "./editRoutineForm";
 import RoutineForm from "./routineForm";
-import DeletePostButton from "./deleteRoutineButton";
+import DeleteRoutineButton from "./deleteRoutineButton";
 
 const MyRoutines = (props) => {
   const { routineId, user, token } = props;
@@ -51,13 +51,13 @@ const MyRoutines = (props) => {
     <div>
       <h2>My Routines</h2>
       <ul>
-        <RoutineForm token={token} />
+        <RoutineForm token={token} user= {user} setUserRoutines={setUserRoutines} />
         {userRoutines.length ? (
           userRoutines.map((routine) => (
             <div key={routine.id}>
               <li>{routine.name}</li>
-              <EditRoutineForm token={token} routineId={routineId}/>
-              <DeletePostButton token={token} routineId={routineId}/>
+              <EditRoutineForm token={token} user={user} routineId={routine.id} getUsersPublicRoutines={getUsersPublicRoutines}/>
+              <DeleteRoutineButton user={user} token={token} routineId={routine.id}/>
             </div>
           ))
         ) : (

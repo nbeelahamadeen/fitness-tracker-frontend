@@ -6,7 +6,7 @@ import MyRoutines from './myroutines';
 
 
 const Login = (props) => {
-  const {user, setUser ,isLoggedIn , setIsLoggedIn, exchangeTokenForUser, token } = props;
+  const {user, setUser ,isLoggedIn , setIsLoggedIn, exchangeTokenForUser, token, routineId } = props;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   

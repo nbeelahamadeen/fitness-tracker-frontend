@@ -39,7 +39,7 @@ const createRoutines = async ({ name, goal, isPublic, token }) => {
     .catch(console.error);
 };
 
-const editRoutine = async(routineId, name, goal, token)=>{
+const editRoutine = async({routineId, name, goal, token})=>{
 await fetch(`${MAIN_URL}/api/routines/${routineId}`, {
   method: "PATCH",
   headers: {

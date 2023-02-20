@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { getAllRoutines, createRoutines } from "../api";
 
 const RoutineForm = (props) => {
-  const { token } = props;
+  const { token, user, setUserRoutines } = props;
+  const {username} = user
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
   const [isPublic, setIsPublic] = useState(null);
@@ -23,10 +24,10 @@ const RoutineForm = (props) => {
     return result;
   };
 
-  const submitRoutine = (ev) => {
+  const submitRoutine = async (ev) => {
     ev.preventDefault();
-    createRoutines({ token, name, goal, isPublic });
-    getUsersPublicRoutines({ username, token});
+    await createRoutines({ token, name, goal, isPublic });
+    await getUsersPublicRoutines({ username, token});
     
   };
 
