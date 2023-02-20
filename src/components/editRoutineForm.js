@@ -4,8 +4,8 @@ import { editRoutine } from "../api";
 const EditRoutineForm =(props)=>{
 const {routineId, token} = props;
 const [isEditing, setIsEditing] = useState(false);
-const [ name, setName] = useState("")
-const [ goal, setGoal] = useState("")
+const [ name, setName] = useState()
+const [ goal, setGoal] = useState()
 
 return isEditing ? (
   <form className="editForm"
