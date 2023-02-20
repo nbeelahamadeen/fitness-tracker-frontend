@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import ActivitiesForm from "./activitesForm";
-import { createActivity } from "../api";
+import EditActiviesForm from "./editActivitiesButton";
 
 const Activities = (props) => {
   const {token} = props
@@ -28,6 +28,7 @@ const Activities = (props) => {
     <div>
       <h2>Activities ({activities.length})</h2>
     {token ? (<ActivitiesForm token={token}/>) : null}
+    {token ? ( <EditActiviesForm token={token}/>) : null}
       <ul>
         {activities.map((activity) => {
           {
