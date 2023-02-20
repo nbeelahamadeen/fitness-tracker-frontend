@@ -107,10 +107,25 @@ const editActivity = async ({activityId, name, description, token}) => {
     .catch(console.error);
 }
 
+
+const attachActivityToRoutine = async({routineId, activityId, count, duration})=>{
+const response = await fetch (`http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}/activities`,{
+  method: "POST",
+  body: JSON.stringify({
+    activityId,
+    count, 
+    duration,
+  })
+});
+const result = await response.json();
+return result
+}
+
 module.exports = {
   getAllRoutines,
   createRoutines,
   createActivity,
   editRoutine,
   editActivity,
+  attachActivityToRoutine
 };

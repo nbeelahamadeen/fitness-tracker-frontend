@@ -1,7 +1,14 @@
 import ReactDOM from "react-dom/client";
 import React, { useState, useEffect } from "react";
 import { HashRouter, Routes, Route, Link, Navigate } from "react-router-dom";
-import { getAllRoutines, createRoutines, createActivity, editRoutine, editActivity } from "./api";
+import {
+  getAllRoutines,
+  createRoutines,
+  createActivity,
+  editRoutine,
+  editActivity,
+  attachActivityToRoutine,
+} from "./api";
 import Login from "./components/login";
 import Register from "./components/register";
 import Home from "./components/home";
@@ -12,7 +19,7 @@ import RoutineForm from "./components/routineForm";
 import ActivitiesForm from "./components/activitesForm";
 import EditRoutineForm from "./components/editRoutineForm";
 import EditActiviesForm from "./components/editActivitiesButton";
-
+import AddActivityToRoutine from "./components/AddActToRoutineBtn";
 
 const App = () => {
   const [user, setUser] = useState([]);
@@ -21,14 +28,17 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(null);
 
-  const getRoutines = async() => {
- const response = await fetch("http://fitnesstrac-kr.herokuapp.com/api/routines", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-     const result = await response.json();
-     setRoutines(result);
+  const getRoutines = async () => {
+    const response = await fetch(
+      "http://fitnesstrac-kr.herokuapp.com/api/routines",
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const result = await response.json();
+    setRoutines(result);
   };
 
   const exchangeTokenForUser = () => {
@@ -53,7 +63,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    getRoutines()
+    getRoutines();
     exchangeTokenForUser();
     // getActivities()
   }, [token]);
@@ -73,8 +83,15 @@ const App = () => {
         {token ? null : <Link to="/register">Register</Link>}
       </nav>
       <Routes>
-        <Route path="/" element={<div><Home/></div>} />
-        
+        <Route
+          path="/"
+          element={
+            <div>
+              <Home />
+            </div>
+          }
+        />
+
         <Route
           path="/routines"
           element={
@@ -95,7 +112,7 @@ const App = () => {
           path="/myroutines"
           element={
             <div>
-              <MyRoutines token= {token} user={user} routines={routines} />
+              <MyRoutines token={token} user={user} routines={routines} />
             </div>
           }
         />
@@ -110,7 +127,7 @@ const App = () => {
                 setIsLoggedIn={setIsLoggedIn}
                 isLoggedIn={isLoggedIn}
                 exchangeTokenForUser={exchangeTokenForUser}
-                token = {token}
+                token={token}
               ></Login>
             </div>
           }
@@ -135,17 +152,20 @@ const App = () => {
             </div>
           }
         />
-        <Route path="/activities/activitiesForm" element={<div><ActivitiesForm  createActivity ={createActivity} token={token}/></div> }/>
-      
+        <Route
+          path="/activities/activitiesForm"
+          element={
+            <div>
+              <ActivitiesForm createActivity={createActivity} token={token} />
+            </div>
+          }
+        />
+
         <Route
           path="/myroutines/editRoutineForm"
           element={
             <div>
-              <EditRoutineForm
-                editRoutine= {editRoutine}
-                token= {token}
-                
-              />
+              <EditRoutineForm editRoutine={editRoutine} token={token} />
             </div>
           }
         />
@@ -153,16 +173,20 @@ const App = () => {
           path="/activites/editActiviesForm"
           element={
             <div>
-              <EditActiviesForm
-                editActivity= {editActivity}
-                token= {token}
-                
-              />
+              <EditActiviesForm editActivity={editActivity} token={token} />
+            </div>
+          }
+        />
+
+        <Route
+          path="/myroutines/addActToRoutineBtn"
+          element={
+            <div>
+              <AddActivityToRoutine attachActivityToRoutine={attachActivityToRoutine} token={token} />
             </div>
           }
         />
       </Routes>
-      
     </div>
   );
 };

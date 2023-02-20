@@ -27,14 +27,14 @@ const Routines = () => {
                 <h3>
                   Routine:{routine.name} ({routine.activities.length})
                 </h3>
-                <li>Goal:{routine.goal}</li>
-                <li>Track Creator:{routine.creatorName}</li>
+                <h3>Goal:{routine.goal}</h3>
+                <h3>Track Creator:{routine.creatorName}</h3>
                 {routine.activities.map((activity) => {
                   return (
                     <div key={activity.id}>
                       <h3>Activity:{activity.name}</h3>
-                      <li>Description: {activity.description}</li>
-                      <li>Duration: {activity.duration}</li>
+                      <h3>Description: {activity.description}</h3>
+                      <h3>Duration: {activity.duration}</h3>
                     </div>
                   );
                 })}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import EditRoutineForm from "./editRoutineForm";
 import RoutineForm from "./routineForm";
 import DeleteRoutineButton from "./deleteRoutineButton";
+import AddActivityToRoutine from "./AddActToRoutineBtn";
 
 const MyRoutines = (props) => {
   const { routineId, user, token } = props;
@@ -36,9 +37,22 @@ const MyRoutines = (props) => {
         {userRoutines.length ? (
           userRoutines.map((routine) => (
             <div key={routine.id}>
-              <li>{routine.name}</li>
+              <h3>Name: {routine.name}</h3>
+              <h3>Goal: {routine.goal}</h3>
+              {routine.activities.map((activity) => {
+                    <div key={activity.id}>
+                      <h3>Activity:{activity.name}</h3>
+                      <li>Description: {activity.description}</li>
+                      <li>Duration: {activity.duration}</li>
+                      <AddActivityToRoutine activityId={activity.id} routineId={routine.id} getUsersPublicRoutines={getUsersPublicRoutines}/>
+
+                    </div>
+                  
+                })}
+
               <EditRoutineForm token={token} user={user} routineId={routine.id} getUsersPublicRoutines={getUsersPublicRoutines}/>
               <DeleteRoutineButton user={user} token={token} routineId={routine.id}/>
+          
             </div>
           ))
         ) : (
