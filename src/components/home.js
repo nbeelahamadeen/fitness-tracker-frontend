@@ -1,7 +1,7 @@
-// import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom/client";
 
 // import { HashRouter, Routes, Route, Link, Navigate } from "react-router-dom";
-// import React, { useState, useEffect } from "react";
+import React from "react";
 // import Register from "./registration";
 // import {routines } from "./routines";
 // import { token, exchangeTokenForUser } from "./../../src/index"
@@ -10,9 +10,14 @@
 
 
 
-// const Home = () => {
-//   const [routines, setRoutines] = useState([]);
-//   const [activities, setActivities]= useState([])
+const Home = () => {
+  return (
+          <div>
+       <h3 className='title'>Welcome Tracker</h3>
+       </div>
+  )
+}
+//   
 //     return (
 //         <div>
 //           <h1 className='title'>Fitness Tracker</h1>
@@ -38,4 +43,4 @@
 //     <App />
 //   </HashRouter>
 // );
-// export default Home;
+export default Home;
