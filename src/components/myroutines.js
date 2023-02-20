@@ -8,6 +8,9 @@ const MyRoutines = (props) => {
   const { routineId, user, token } = props;
   const { username } = user;
   const [userRoutines, setUserRoutines] = useState([]);
+  const [count, setCount] =useState("")
+  const [duration, setDuration] = useState("")
+
 
   const getUsersPublicRoutines = async ({ username, token }) => {
     const response = await fetch(
@@ -39,7 +42,17 @@ const MyRoutines = (props) => {
             <div key={routine.id}>
               <h3>Name: {routine.name}</h3>
               <h3>Goal: {routine.goal}</h3>
-              {routine.activities.map((activity) => {
+              <form>
+                <input name="count" value={count}></input>
+                <input name="duration" value={duration}></input>
+                <select>
+                  {routine.activities.map(activity => (
+                    <option>{activity.name}</option>
+                  ))}
+                </select>
+                <button>Add Activity</button>
+              </form>
+              {/* {routine.activities.map((activity) => {
                     <div key={activity.id}>
                       <h3>Activity:{activity.name}</h3>
                       <li>Description: {activity.description}</li>
@@ -48,7 +61,7 @@ const MyRoutines = (props) => {
 
                     </div>
                   
-                })}
+                })} */}
 
               <EditRoutineForm token={token} user={user} routineId={routine.id} getUsersPublicRoutines={getUsersPublicRoutines}/>
               <DeleteRoutineButton user={user} token={token} routineId={routine.id}/>

@@ -28,6 +28,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(null);
 
+
   const getRoutines = async () => {
     const response = await fetch(
       "http://fitnesstrac-kr.herokuapp.com/api/routines",
