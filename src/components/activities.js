@@ -28,14 +28,15 @@ const Activities = (props) => {
     <div>
       <h2>Activities ({activities.length})</h2>
     {token ? (<ActivitiesForm token={token}/>) : null}
-    {token ? ( <EditActiviesForm token={token}/>) : null}
       <ul>
         {activities.map((activity) => {
           {
             return (
               <li key={activity.id}>
-                <h3>{activity.name}</h3>
-                <p>Description: {activity.description}</p>
+                <h3>Name: {activity.name}</h3>
+                <h3>Description: {activity.description}</h3>
+                
+                {token ? ( <EditActiviesForm activityId={activity.id} token={token}/>) : null}
               </li>
             );
           }

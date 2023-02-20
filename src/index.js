@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import React, { useState, useEffect } from "react";
 import { HashRouter, Routes, Route, Link, Navigate } from "react-router-dom";
-import { getAllRoutines, createRoutines, createActivity, editRoutine } from "./api";
+import { getAllRoutines, createRoutines, createActivity, editRoutine, editActivity } from "./api";
 import Login from "./components/login";
 import Register from "./components/register";
 import Home from "./components/home";
@@ -11,6 +11,7 @@ import MyRoutines from "./components/myroutines";
 import RoutineForm from "./components/routineForm";
 import ActivitiesForm from "./components/activitesForm";
 import EditRoutineForm from "./components/editRoutineForm";
+import EditActiviesForm from "./components/editActivitiesButton";
 
 
 const App = () => {
@@ -142,6 +143,18 @@ const App = () => {
             <div>
               <EditRoutineForm
                 editRoutine= {editRoutine}
+                token= {token}
+                
+              />
+            </div>
+          }
+        />
+        <Route
+          path="/activites/editActiviesForm"
+          element={
+            <div>
+              <EditActiviesForm
+                editActivity= {editActivity}
                 token= {token}
                 
               />
